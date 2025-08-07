@@ -7,6 +7,14 @@ class HomePage extends StatelessWidget {
   // 없어도 에러는 나지 않음
   // 협업할 때, 다른개발자한테 알려주기위해서!
   // 빌드할때 (apk파일 만들 때)
+
+  // 함수
+  void buttonClick(
+    /** 매개변수 */
+  ) {
+    //
+  }
+
   @override
   Widget build(BuildContext context) {
     List<String> titles = ["물마시기", "프로그래밍", "아침에코딩", "Q&A", "스터디"];
@@ -26,6 +34,21 @@ class HomePage extends StatelessWidget {
         itemBuilder: (context, index) {
           return TodoWidget(title: titles[index], isDone: index % 2 == 0);
         },
+      ),
+      // 익명 함수 => 이름이 없는 함수
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print("버튼 터치됨");
+        },
+        backgroundColor: Color(0xFF5714E6),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(100),
+        ),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+          size: 36,
+        ),
       ),
     );
   }
