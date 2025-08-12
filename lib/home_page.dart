@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    IntrinsicHeight;
     List<String> titles = ["물마시기", "프로그래밍", "아침에코딩", "Q&A", "스터디"];
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +42,12 @@ class HomePage extends StatelessWidget {
           print("버튼 터치됨");
           showModalBottomSheet(
             context: context,
+            // 화면 전체 사용할 수 있게 해주는 속성!
+            isScrollControlled: true,
             builder: (context) {
+              final keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
+              print("키보드의 높이는 : $keyboardHeight");
+
               return Container(
                 width: double.infinity,
                 height: 300,
@@ -58,6 +64,9 @@ class HomePage extends StatelessWidget {
                   top: 20,
                   bottom: 24,
                 ),
+                // 키보드 영역만큼 아래공간 띄우기
+                // 실기기 (안드로이드, 아이폰) + 아이폰 가상머신용
+                margin: EdgeInsets.only(bottom: keyboardHeight),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -69,7 +78,6 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 11),
-                    // TODO 키보드가 바텀시트 가리는 현상 해결하기
                     // TODO 키보드 올라와있을 때 흰색 컨테이너 터치하면 키보드 없애는거 구현하기
                     // TODO 저장 버튼 꾸미기!
                     TextField(
